@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    public static class PSHandReader
+    public static class PsHhReader
     {
         public static List<string> ReadHands(string path)
         {
