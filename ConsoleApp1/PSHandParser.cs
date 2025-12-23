@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace ConsoleApp1
+namespace PSHhParser
 {
     public class PSHandParser
     {

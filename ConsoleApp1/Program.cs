@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using ConsoleApp1;
+using PSHhParser;
 
-namespace HandHistoryParser
+namespace PSHhParser
 {
     class Program
     {
