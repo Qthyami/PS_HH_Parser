@@ -79,7 +79,7 @@ namespace PSHhParser
                         
                         string stackStr = strParts[3].Trim().Trim('(', '$');
                      
-                        playerTemp.stack = StringToNumberParser.ParserHelper.ParseNumber<decimal>(stackStr); //наши, перепарсили, записали 
+                        playerTemp.stack = StringToNumberParser.ParserHelper.ParseNumber<decimal>(stackStr); //нашли, перепарсили, записали 
 
                         string seatNum = strParts[1].Trim().TrimEnd(':');
                         playerTemp.seatNumber = StringToNumberParser.ParserHelper.ParseNumber<int>(seatNum);
