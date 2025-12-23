@@ -13,7 +13,7 @@ namespace ConsoleApp1
         public class PlayerInfo
         {
             public int seatNumber {  get; set; }
-            public string nickName{ get; set; }
+            public string nickName { get; set; } = string.Empty;
             public decimal stack { get; set; }
             public bool? Hero {  get; set; }
             public string? heroCards { get; set; }
@@ -23,7 +23,7 @@ namespace ConsoleApp1
         {
             public long handNumber {  get; set; }
 
-            public List<PlayerInfo> playerInfos { get; set; }          
+            public List<PlayerInfo> playerInfos { get; set; }=new List<PlayerInfo>();         
 
         }
 
