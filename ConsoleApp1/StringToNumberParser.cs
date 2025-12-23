@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PSHhParser
 {
-    public class StringToNumberParser
+    public class StringToNumberParser   //кастомный вариант метода TryParse с возможностью менять типы, написана ChatGPT. Можно и без нее, просто прописывая if else и меняя типы чисел руками.
     {
         public static class ParserHelper
         {

@@ -4,20 +4,23 @@ using System.Text;
 
 namespace PSHhParser
 {
-    public static class PsHhReader
+
+    //функция, читающая txt файл по заданному path. Нарезает непрерывный текст раздач в List<string>,
+    // чтобы потом через цикл скормить их парсеру, обрабатывающий 1 раздачу  PSHandParser.ParseHand(hand);
+
+    public static class PsHhReader  
     {
         public static List<string> ReadHands(string path)
         {
             var hands = new List<string>();
-            var currentHand = new StringBuilder();
+            var currentHand = new StringBuilder();  //временная переменная, очищаемая к концу кажого цикла после добавления в переменныю hands
 
 
-            bool startHand = false;
-
+            bool startHand = false;  //флаги, изначально зануленные и заполняемые по мере продвижения к концу раздачи. 
             bool summary = false;
             bool totalPotLine = false;
             bool summaryCompleted = false;
-            int seatLineCointer = 0;
+            int seatLineCointer = 0; //сколько строк seat уже прошли
 
 
             foreach (var line in File.ReadLines(path))
@@ -25,7 +28,7 @@ namespace PSHhParser
                 if (string.IsNullOrEmpty(line)) continue;
 
 
-                if (line.StartsWith("PokerStars Hand #"))
+                if (line.StartsWith("PokerStars Hand #"))   // если встречаем начало раздачи и все флаги заполнены обрезаем заполение currentHand и пушим содержимое в hands
                 {
                     if (startHand && summaryCompleted&& currentHand.Length > 0)
                     {
@@ -42,15 +45,15 @@ namespace PSHhParser
 
 
                 }
-
-                if (startHand)
+                 
+                if (startHand)  //мы внутри раздачи добавляем строка за строкой в currentHand
                 {
                     currentHand.AppendLine(line);
                 }
-                else continue;
-            
+                else continue; // Добавляем строки только после начала раздачи, остальное игнорируем
 
-                if (line.StartsWith("*** SUMMARY ***"))
+
+                if (line.StartsWith("*** SUMMARY ***")) //дальше по мере заполения флагов подходим к концу разадчи и когда опять встретим "PokerStars Hand #" обрезаем чтение
                 {
                     summary = true;
                     totalPotLine = false;
@@ -79,7 +82,7 @@ namespace PSHhParser
                
             }
 
-            if (startHand && summaryCompleted)
+            if (startHand && summaryCompleted)  // случай конца txt файла - пушим в List накопленное, хоть и не встретили начало новой руки
             {
 
                 hands.Add(currentHand.ToString().Trim());
